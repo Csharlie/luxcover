@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/v2/' : '/',
+  base: mode === 'production' ? '/luxcover/' : '/',
   plugins: [react()],
   resolve: {
     alias: {

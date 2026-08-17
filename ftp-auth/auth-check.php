@@ -10,7 +10,7 @@ $expected = hash_hmac('sha256', 'luxcover', $secret);
 $got      = $_COOKIE[COOKIE_NAME] ?? '';
 
 if (!hash_equals($expected, $got)) {
-    header('Location: /login.php');
+    header('Location: /luxcover/login.php');
     exit;
 }
 

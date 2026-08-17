@@ -10,8 +10,8 @@ const COOKIE_NAME = 'lc_auth';
 const COOKIE_TTL  = 60 * 60 * 24 * 7;
 
 if (isset($_GET['logout'])) {
-    setcookie(COOKIE_NAME, '', time() - 3600, '/', '', true, true);
-    header('Location: /login.php');
+    setcookie(COOKIE_NAME, '', time() - 3600, '/luxcover/', '', true, true);
+    header('Location: /luxcover/login.php');
     exit;
 }
 
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass = $_POST['password'] ?? '';
     if ($user === VALID_USER && apr1_verify($pass, VALID_HASH)) {
         $token = hash_hmac('sha256', $user, $secret);
-        setcookie(COOKIE_NAME, $token, time() + COOKIE_TTL, '/', '', true, true);
-        header('Location: /');
+        setcookie(COOKIE_NAME, $token, time() + COOKIE_TTL, '/luxcover/', '', true, true);
+        header('Location: /luxcover/');
         exit;
     }
     $error = 'Helytelen felhasználónév vagy jelszó';
