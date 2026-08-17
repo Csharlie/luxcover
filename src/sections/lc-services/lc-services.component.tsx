@@ -98,13 +98,13 @@ export function LcServices({ title, subtitle, services }: LcServicesData) {
               {/* Content */}
               <div className="relative z-10 w-full container mx-auto px-6 max-w-7xl py-20">
                 <div
-                  className={`max-w-xl ${isLeft ? '' : 'ml-auto'}`}
+                  className={`max-w-xl ${isLeft ? '' : 'ml-auto text-right'}`}
                   data-ui-id={`service-content-${index}`}
                   data-ui-role="feature-content"
                 >
                   {/* Decorative number */}
                   <p
-                    className="font-black leading-none select-none pointer-events-none mb-0 -ml-2"
+                    className={`font-black leading-none select-none pointer-events-none mb-0 ${isLeft ? '-ml-2' : '-mr-2'}`}
                     style={{
                       fontSize: 'clamp(80px, 14vw, 160px)',
                       color: 'rgba(196,154,26,0.06)',
@@ -117,7 +117,7 @@ export function LcServices({ title, subtitle, services }: LcServicesData) {
                   </p>
 
                   {/* Icon row with extending line */}
-                  <div className="flex items-center gap-4 mb-7">
+                  <div className={`flex items-center gap-4 mb-7 ${isLeft ? '' : 'flex-row-reverse'}`}>
                     <div className="p-2.5 rounded-lg bg-gold/10 border border-gold/20 flex-shrink-0">
                       <Icon className="w-6 h-6 text-gold" strokeWidth={1.5} />
                     </div>
@@ -144,30 +144,32 @@ export function LcServices({ title, subtitle, services }: LcServicesData) {
                   <p
                     data-ui-id={`service-desc-${index}`}
                     data-ui-role="feature-description"
-                    className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-md"
+                    className={`text-gray-300 text-base md:text-lg leading-relaxed mb-10 ${isLeft ? 'max-w-md' : 'max-w-md ml-auto'}`}
                   >
                     {service.description}
                   </p>
 
                   {/* CTA link */}
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-                    }}
-                    data-ui-type="link"
-                    data-ui-id={`service-cta-${index}`}
-                    data-ui-action="navigate"
-                    data-ui-trigger="click"
-                    className="inline-flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider group"
-                  >
-                    <span>Ajánlatot kérek</span>
-                    <ArrowRight
-                      className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                      strokeWidth={2}
-                    />
-                  </a>
+                  <div className={isLeft ? '' : 'flex justify-end'}>
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                      }}
+                      data-ui-type="link"
+                      data-ui-id={`service-cta-${index}`}
+                      data-ui-action="navigate"
+                      data-ui-trigger="click"
+                      className={`inline-flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider group ${isLeft ? '' : 'flex-row-reverse'}`}
+                    >
+                      <span>Ajánlatot kérek</span>
+                      <ArrowRight
+                        className={`w-4 h-4 transition-transform duration-200 ${isLeft ? 'group-hover:translate-x-1' : 'group-hover:-translate-x-1'}`}
+                        strokeWidth={2}
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
