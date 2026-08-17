@@ -70,24 +70,32 @@ export const siteData: SiteData = {
                 icon: 'Sun',
                 description:
                   'Hő- és UV-blokkoló üvegfóliák járműre és épületre. Csökkenti a belső hőmérsékletet, védi a kárpitot és az egészséget, fokozza a magánszférát – látványos, diszkrét megjelenéssel.',
+                backgroundImage:
+                  'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600&auto=format&fit=crop&q=80',
               },
               {
                 title: 'Wrap – Színfóliázás',
                 icon: 'Layers',
                 description:
                   'Teljes karosszériaszín-csere fóliával. Védi az eredeti festéket, bármikor visszaállítható, széles színpaletta. Tökéletes autótuninghoz, flottabranding-hez és frissítéshez.',
+                backgroundImage:
+                  'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&auto=format&fit=crop&q=80',
               },
               {
                 title: 'PPF – Karosszériavédelem',
                 icon: 'Shield',
                 description:
                   'Karcálló, öngyógyuló paint protection film. Láthatatlan védelem a kavicssérülések, karcok és kémiai hatások ellen. Megőrzi az autó értékét és fényét éveken át.',
+                backgroundImage:
+                  'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&auto=format&fit=crop&q=80',
               },
               {
                 title: 'Épületfóliázás',
                 icon: 'Building2',
                 description:
                   'Energiatakarékos és dekoratív üvegfóliák irodákba, lakásokba és kereskedelmi terekbe. UV-szűrés, hővédelem és diszkrét árnyékolás egyben.',
+                backgroundImage:
+                  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop&q=80',
               },
             ],
           },

@@ -2,6 +2,7 @@ export interface LcServiceItem {
   title: string
   icon: string
   description: string
+  backgroundImage?: string
 }
 
 export interface LcServicesData {

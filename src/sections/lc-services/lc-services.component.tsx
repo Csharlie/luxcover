@@ -3,23 +3,15 @@ import {
   Layers,
   Shield,
   Sun,
+  ArrowRight,
   type LucideIcon,
 } from 'lucide-react'
 import type { LcServicesData } from './lc-services.schema'
 
-const iconMap: Record<string, LucideIcon> = {
-  Sun,
-  Layers,
-  Shield,
-  Building2,
-}
-
+const iconMap: Record<string, LucideIcon> = { Sun, Layers, Shield, Building2 }
 const iconAliases: Record<string, keyof typeof iconMap> = {
-  sun: 'Sun',
-  layers: 'Layers',
-  shield: 'Shield',
-  building2: 'Building2',
-  building: 'Building2',
+  sun: 'Sun', layers: 'Layers', shield: 'Shield',
+  building2: 'Building2', building: 'Building2',
 }
 
 function resolveIcon(name: string): LucideIcon {
@@ -35,75 +27,156 @@ export function LcServices({ title, subtitle, services }: LcServicesData) {
       data-ui-id="section-lc-services"
       data-ui-component="lc-services"
       data-ui-role="features-section"
-      className="bg-obsidian-900 py-24 scroll-mt-16"
+      className="bg-obsidian-950 scroll-mt-16"
     >
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-16">
-          {subtitle && (
-            <p
-              data-ui-id="services-subtitle"
-              data-ui-role="section-subtitle"
-              className="text-xs font-semibold text-gold uppercase tracking-[0.25em] mb-3"
-            >
-              {subtitle}
-            </p>
-          )}
-          <h2
-            data-ui-id="services-title"
-            data-ui-role="section-title"
-            className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight"
+      {/* Section header */}
+      <div className="container mx-auto px-6 pt-24 pb-16 text-center">
+        {subtitle && (
+          <p
+            data-ui-id="services-subtitle"
+            data-ui-role="section-subtitle"
+            className="text-xs font-semibold text-gold uppercase tracking-[0.25em] mb-3"
           >
-            {title}
-          </h2>
-          <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-        </div>
-
-        <div
-          data-ui-id="services-grid"
-          data-ui-role="feature-grid"
-          className={`grid gap-6 ${services.length <= 2 ? 'md:grid-cols-2' : services.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-4'}`}
+            {subtitle}
+          </p>
+        )}
+        <h2
+          data-ui-id="services-title"
+          data-ui-role="section-title"
+          className="text-4xl md:text-5xl font-bold text-white tracking-tight"
         >
-          {services.map((service, index) => {
-            const Icon = resolveIcon(service.icon)
-            return (
+          {title}
+        </h2>
+        <div className="mx-auto mt-5 h-px w-28 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+      </div>
+
+      {/* Service blocks */}
+      <div data-ui-id="services-blocks" data-ui-role="feature-blocks">
+        {services.map((service, index) => {
+          const isLeft = index % 2 === 0
+          const Icon = resolveIcon(service.icon)
+          const num = String(index + 1).padStart(2, '0')
+
+          return (
+            <div
+              key={service.title}
+              data-ui-id={`service-block-${index}`}
+              data-ui-role="feature-block"
+              className="relative flex items-center overflow-hidden"
+              style={{ minHeight: '72vh' }}
+            >
+              {/* Background image — full cover */}
+              {service.backgroundImage && (
+                <img
+                  src={service.backgroundImage}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  loading="lazy"
+                  aria-hidden="true"
+                />
+              )}
+
+              {/* Horizontal fade overlay */}
               <div
-                key={service.title}
-                data-ui-id={`service-card-${index}`}
-                data-ui-role="feature-card"
-                className="relative overflow-hidden bg-obsidian-900 border border-obsidian-700 p-8 rounded-xl hover:border-gold/40 transition-all group"
-              >
-                {/* Background icon — large, faded */}
-                <div className="absolute -top-3 -right-3 opacity-[0.06] group-hover:opacity-[0.10] transition-opacity">
-                  <Icon className="w-28 h-28 text-gold" />
-                </div>
+                className="absolute inset-0"
+                style={{
+                  background: isLeft
+                    ? 'linear-gradient(to right, #0a0a10 0%, rgba(10,10,16,0.96) 38%, rgba(10,10,16,0.75) 58%, rgba(10,10,16,0.15) 82%, transparent 100%)'
+                    : 'linear-gradient(to left, #0a0a10 0%, rgba(10,10,16,0.96) 38%, rgba(10,10,16,0.75) 58%, rgba(10,10,16,0.15) 82%, transparent 100%)',
+                }}
+              />
 
-                {/* Gold accent bar */}
-                <div className="w-10 h-1 bg-gold rounded-full mb-6 group-hover:w-16 transition-all duration-300" />
+              {/* Top/bottom edge vignettes */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-obsidian-950 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-obsidian-950 to-transparent" />
 
-                <div className="relative z-10">
-                  <div className="mb-4">
-                    <Icon className="w-8 h-8 text-gold" strokeWidth={1.5} />
+              {/* Thin separator top */}
+              {index > 0 && (
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
+              )}
+
+              {/* Content */}
+              <div className="relative z-10 w-full container mx-auto px-6 max-w-7xl py-20">
+                <div
+                  className={`max-w-xl ${isLeft ? '' : 'ml-auto'}`}
+                  data-ui-id={`service-content-${index}`}
+                  data-ui-role="feature-content"
+                >
+                  {/* Decorative number */}
+                  <p
+                    className="font-black leading-none select-none pointer-events-none mb-0 -ml-2"
+                    style={{
+                      fontSize: 'clamp(80px, 14vw, 160px)',
+                      color: 'rgba(196,154,26,0.06)',
+                      lineHeight: 1,
+                      marginBottom: '-0.25em',
+                    }}
+                    aria-hidden="true"
+                  >
+                    {num}
+                  </p>
+
+                  {/* Icon row with extending line */}
+                  <div className="flex items-center gap-4 mb-7">
+                    <div className="p-2.5 rounded-lg bg-gold/10 border border-gold/20 flex-shrink-0">
+                      <Icon className="w-6 h-6 text-gold" strokeWidth={1.5} />
+                    </div>
+                    <div
+                      className="flex-1 h-px"
+                      style={{
+                        background: isLeft
+                          ? 'linear-gradient(to right, rgba(196,154,26,0.5), transparent)'
+                          : 'linear-gradient(to left, rgba(196,154,26,0.5), transparent)',
+                      }}
+                    />
                   </div>
+
+                  {/* Title */}
                   <h3
-                    data-ui-id={`services-item-title-${index}`}
-                    data-ui-role="item-title"
-                    className="text-xl font-bold text-white mb-4"
+                    data-ui-id={`service-title-${index}`}
+                    data-ui-role="feature-title"
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight leading-tight"
                   >
                     {service.title}
                   </h3>
+
+                  {/* Description */}
                   <p
-                    data-ui-id={`services-item-desc-${index}`}
-                    data-ui-role="item-description"
-                    className="text-gray-300 leading-relaxed text-sm"
+                    data-ui-id={`service-desc-${index}`}
+                    data-ui-role="feature-description"
+                    className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-md"
                   >
                     {service.description}
                   </p>
+
+                  {/* CTA link */}
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    data-ui-type="link"
+                    data-ui-id={`service-cta-${index}`}
+                    data-ui-action="navigate"
+                    data-ui-trigger="click"
+                    className="inline-flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider group"
+                  >
+                    <span>Ajánlatot kérek</span>
+                    <ArrowRight
+                      className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                      strokeWidth={2}
+                    />
+                  </a>
                 </div>
               </div>
-            )
-          })}
-        </div>
+            </div>
+          )
+        })}
       </div>
+
+      {/* Bottom separator */}
+      <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
     </section>
   )
 }
