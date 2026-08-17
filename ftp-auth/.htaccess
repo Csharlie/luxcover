@@ -1,0 +1,25 @@
+# LuxCover — cookie-alapú bejelentkezési kapu + SPA fallback
+DirectoryIndex auth-check.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # login + auth-check közvetlen elérése mindig engedélyezett
+    RewriteRule ^login\.php$ - [L]
+    RewriteRule ^auth-check\.php$ - [L]
+    RewriteRule ^favicon\.ico$ - [L]
+
+    # index.html közvetlen elérése átmegy az auth gate-en
+    RewriteRule ^index\.html$ /auth-check.php [L]
+
+    # Statikus assetekhez (js, css, képek) szükséges a cookie
+    RewriteCond %{HTTP_COOKIE} !lc_auth=
+    RewriteCond %{REQUEST_URI} ^/(assets|.*\.(?:js|css|png|jpg|jpeg|svg|woff2?|ico))
+    RewriteRule .* /login.php [L,R=302]
+
+    # SPA fallback — minden nem-fájl kérés az auth gate-re megy
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /auth-check.php [L]
+</IfModule>
