@@ -5,7 +5,7 @@
  */
 
 const VALID_USER  = 'luxcover';
-const VALID_HASH  = '$apr1$5BJMtU3u$6KHGYgLVPxbCJqDAZ1wIs1'; // LuxCover2025!
+const VALID_HASH  = '$apr1$wNoCp5DD$ttbQBRkwVk522x0taYo1o.'; // LCPSP26!
 const COOKIE_NAME = 'lc_auth';
 const COOKIE_TTL  = 60 * 60 * 24 * 7;
 

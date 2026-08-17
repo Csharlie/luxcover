@@ -2,7 +2,7 @@
 /**
  * LuxCover — auth gate: ellenőrzi a cookie-t, kiszolgálja az index.html-t vagy átirányít.
  */
-const VALID_HASH  = '$apr1$5BJMtU3u$6KHGYgLVPxbCJqDAZ1wIs1';
+const VALID_HASH  = '$apr1$wNoCp5DD$ttbQBRkwVk522x0taYo1o.';
 const COOKIE_NAME = 'lc_auth';
 
 $secret   = 'lc-' . VALID_HASH;
