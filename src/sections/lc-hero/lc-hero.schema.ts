@@ -1,0 +1,11 @@
+import type { CallToAction, Media } from '@spektra/types'
+
+export interface LcHeroData {
+  eyebrow?: string
+  title: string
+  subtitle?: string
+  description: string
+  primaryCTA?: CallToAction
+  secondaryCTA?: CallToAction
+  backgroundImage?: Media
+}
