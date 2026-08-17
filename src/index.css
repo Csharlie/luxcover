@@ -37,6 +37,11 @@
 }
 
 @layer components {
+  /* Override platform Logo gradient → LuxCover gold brand colors */
+  [data-ui-component="logo"] span {
+    background-image: linear-gradient(to right, #C49A1A, #F0D98A) !important;
+  }
+
   /* Nav mobile toggle — gold background */
   [data-ui-id="nav-mobile-toggle"] {
     @apply bg-gold text-obsidian-950 rounded-lg;
