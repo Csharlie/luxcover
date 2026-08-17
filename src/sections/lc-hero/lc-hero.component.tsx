@@ -17,7 +17,7 @@ export function LcHero({
       data-ui-role="hero"
       data-ui-state="default"
       data-ui-variant="primary"
-      className="relative min-h-screen pt-32 md:pt-24 pb-20 flex items-start md:items-center overflow-hidden"
+      className="relative min-h-screen pt-20 pb-20 flex items-center overflow-hidden"
     >
       {/* Background image */}
       <div className="absolute inset-0">
